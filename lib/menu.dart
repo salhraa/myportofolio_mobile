@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
-  final String npm = "2406000001";
-  final String nama = "Burhan";
+  final String npm = "2506586532";
+  final String nama = "Salma Maharani";
   final String kelas = "PBP A";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Proyek", Icons.folder),
-    ItemHomepage("Tambah Proyek", Icons.add_circle),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Lihat Proyek", Icons.folder, const Color(0xFFF5C6D6)),
+    ItemHomepage("Tambah Proyek", Icons.add_circle, const Color(0xFFDCCCF5)),
+    ItemHomepage("Logout", Icons.logout, const Color(0xFFC7E8D3)),
   ];
 
     @override
@@ -120,8 +120,9 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  ItemHomepage(this.name, this.icon, this.color);
 }
 class ItemCard extends StatelessWidget {
   final ItemHomepage item;
@@ -132,7 +133,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       // Menggunakan warna sekunder dari skema tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         // Aksi ketika kartu ditekan oleh pengguna.
@@ -152,7 +153,7 @@ class ItemCard extends StatelessWidget {
               children: [
                 Icon(
                   item.icon,
-                  color: Colors.white,
+                  color: Colors.black87,
                   size: 30.0,
                 ),
                 const Padding(padding: EdgeInsets.all(3)),
