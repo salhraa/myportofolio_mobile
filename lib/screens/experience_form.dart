@@ -1,5 +1,5 @@
-
 import 'package:material_ui/material_ui.dart';
+
 import '../widgets/left_drawer.dart';
 
 class ExperienceFormPage extends StatefulWidget {
@@ -118,9 +118,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tambah Pengalaman'),
-      ),
+      appBar: AppBar(title: const Text('Tambah Pengalaman')),
       drawer: const LeftDrawer(),
       body: Form(
         key: _formKey,
@@ -177,10 +175,7 @@ class _ExperienceFormPageState extends State<ExperienceFormPage> {
                     value: 'internship',
                     child: Text('Internship'),
                   ),
-                  DropdownMenuItem(
-                    value: 'research',
-                    child: Text('Research'),
-                  ),
+                  DropdownMenuItem(value: 'research', child: Text('Research')),
                   DropdownMenuItem(
                     value: 'volunteer',
                     child: Text('Volunteer'),
