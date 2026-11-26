@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:myportofolio_mobile/services/api_client.dart';
 import 'package:myportofolio_mobile/models/skill.dart';
+import 'package:myportofolio_mobile/models/experience.dart';
 
 class AuthState extends ChangeNotifier {
   final ApiClient _apiClient = ApiClient();
@@ -26,6 +27,16 @@ class AuthState extends ChangeNotifier {
 
   Future<List<Skill>> getSkills() {
     return _apiClient.getSkills();
+  }
+
+  Future<List<Experience>> getExperiences() {
+    return _apiClient.getExperiences();
+  }
+
+  Future<void> createExperience(
+    Map<String, dynamic> experience,
+  ) {
+    return _apiClient.createExperience(experience);
   }
 
   Future<void> logout() async {

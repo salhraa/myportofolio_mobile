@@ -1,7 +1,9 @@
 import 'package:material_ui/material_ui.dart';
+
 import 'package:myportofolio_mobile/screens/menu.dart';
 import 'package:myportofolio_mobile/screens/project_form.dart';
 import 'package:myportofolio_mobile/screens/experience_form.dart';
+import 'package:myportofolio_mobile/screens/experience_list.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -56,6 +58,7 @@ class LeftDrawer extends StatelessWidget {
               );
             },
           ),
+
           ListTile(
             leading: const Icon(Icons.work_outline),
             title: const Text('Add Experience'),
@@ -64,6 +67,19 @@ class LeftDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => const ExperienceFormPage(),
+                ),
+              );
+            },
+          ),
+
+          ListTile(
+            leading: const Icon(Icons.list_alt),
+            title: const Text('View Experiences'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ExperienceListPage(),
                 ),
               );
             },

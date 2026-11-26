@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:myportofolio_mobile/config.dart';
 import 'package:myportofolio_mobile/models/skill.dart';
+import 'package:myportofolio_mobile/models/experience.dart';
 
 class ApiException implements Exception {
   final int statusCode;
@@ -26,6 +27,7 @@ class ApiClient {
     if (_token != null) 'Authorization': 'Token $_token',
   };
 
+  // GET Skills
   Future<List<Skill>> getSkills() async {
     final response = await _client.get(
       Uri.parse('$apiBaseUrl/api/v1/skills/'),
@@ -43,6 +45,38 @@ class ApiClient {
         .toList();
   }
 
+  // GET Experiences
+  Future<List<Experience>> getExperiences() async {
+    final response = await _client.get(
+      Uri.parse('$apiBaseUrl/api/v1/experiences/'),
+      headers: _headers,
+    );
+
+    if (response.statusCode != 200) {
+      throw ApiException(response.statusCode, response.body);
+    }
+
+    final List<dynamic> data = jsonDecode(response.body);
+
+    return data
+        .map((item) => Experience.fromJson(item as Map<String, dynamic>))
+        .toList();
+  }
+
+  // POST Experience
+  Future<void> createExperience(Map<String, dynamic> experience) async {
+    final response = await _client.post(
+      Uri.parse('$apiBaseUrl/api/v1/experiences/'),
+      headers: _headers,
+      body: jsonEncode(experience),
+    );
+
+    if (response.statusCode != 201 && response.statusCode != 200) {
+      throw ApiException(response.statusCode, response.body);
+    }
+  }
+
+  // Login
   Future<void> login(String username, String password) async {
     final response = await _client.post(
       Uri.parse('$apiBaseUrl/api/v1/auth/token/'),
@@ -58,6 +92,7 @@ class ApiClient {
     _token = data['token'] as String;
   }
 
+  // Logout
   Future<void> logout() async {
     if (_token == null) return;
 
